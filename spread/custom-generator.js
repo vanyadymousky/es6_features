@@ -24,3 +24,9 @@ firstCarYears[Symbol.iterator] = function* carsGenerator() {
 };
 
 console.log(...firstCarYears);
+
+function logYears(year1) {
+    console.log(year1);
+}
+
+logYears(...firstCarYears);

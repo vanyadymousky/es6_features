@@ -5,22 +5,27 @@ function* gen(i) {
 }
 
 var gengen = gen(5);
-console.log(gengen.next()); // 15
-console.log(gengen.next()); // 25
-console.log(gengen.next()); // 35
+console.log(gengen.next(1)); // 15
+console.log(gengen.next(2)); // 25
+console.log(gengen.next(3)); // 35
 
 
 
-
-
-function* fibonacci(limit) {
-    yield* [0,1,1,2,3,5,8,13,21].splice(0, limit);
+function* fibonacciSrc(limit) {
+    for (let value of [0,1,1,2,3,5,8,13,21].splice(0, limit)) {
+        console.log('limit: ', ++limit);
+        yield value;
+    }
 }
 
-var fibonacciIterator = fibonacci(5);
-console.log(fibonacciIterator.next().value);
-console.log(fibonacciIterator.next().value);
-console.log(fibonacciIterator.next().value);
-console.log(fibonacciIterator.next().value);
-console.log(fibonacciIterator.next().value);
-console.log(fibonacciIterator.next().value);
+function* fibonacci(limit) {
+    yield* fibonacciSrc(limit);
+    yield limit;
+}
+
+var fibonacciIterator = fibonacci(4);
+console.log('next: ', fibonacciIterator.next().value);
+console.log('next: ', fibonacciIterator.next().value);
+console.log('next: ', fibonacciIterator.next().value);
+console.log('next: ', fibonacciIterator.next().value);
+console.log('limit: ', fibonacciIterator.next().value);

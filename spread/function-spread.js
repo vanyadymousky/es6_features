@@ -1,6 +1,6 @@
 'use strict';
 
-function go(...params) {
+function go(one, two, ...params) {
     console.log(params);
 }
 
